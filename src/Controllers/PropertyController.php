@@ -8,7 +8,21 @@ use App\Models\Report;
 
 class PropertyController extends BaseController
 {
-    public function index(): void { $this->render('properties/index', ['properties' => PropertyListing::all($_GET), 'filters' => $_GET]); }
+    public function index(): void
+    {
+        $page = max(1, (int) ($_GET['page'] ?? 1));
+        $perPage = 12;
+        $total = PropertyListing::count($_GET);
+        $properties = PropertyListing::all($_GET, $perPage, ($page - 1) * $perPage);
+        $this->render('properties/index', [
+            'properties' => $properties,
+            'filters' => $_GET,
+            'page' => $page,
+            'perPage' => $perPage,
+            'total' => $total,
+            'totalPages' => (int) ceil($total / $perPage),
+        ]);
+    }
     public function create(): void { Auth::requireAuth(); $this->render('properties/create'); }
 
     public function store(): void

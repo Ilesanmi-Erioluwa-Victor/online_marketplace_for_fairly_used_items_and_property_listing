@@ -12,7 +12,21 @@ use App\Models\Report;
 
 class ItemController extends BaseController
 {
-    public function index(): void { $this->render('items/index', ['items' => ItemListing::all($_GET), 'filters' => $_GET]); }
+    public function index(): void
+    {
+        $page = max(1, (int) ($_GET['page'] ?? 1));
+        $perPage = 12;
+        $total = ItemListing::count($_GET);
+        $items = ItemListing::all($_GET, $perPage, ($page - 1) * $perPage);
+        $this->render('items/index', [
+            'items' => $items,
+            'filters' => $_GET,
+            'page' => $page,
+            'perPage' => $perPage,
+            'total' => $total,
+            'totalPages' => (int) ceil($total / $perPage),
+        ]);
+    }
     public function create(): void { Auth::requireAuth(); $this->render('items/create'); }
 
     public function store(): void

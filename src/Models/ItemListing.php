@@ -5,6 +5,15 @@ use App\Core\Database;
 
 class ItemListing
 {
+    public static function count(array $filters = []): int
+    {
+        [$where, $params, $_] = self::filterSql($filters);
+        $sql = "SELECT COUNT(*) FROM item_listings i JOIN users u ON u.id=i.user_id WHERE i.status='active' {$where}";
+        $stmt = Database::getConnection()->prepare($sql);
+        $stmt->execute($params);
+        return (int) $stmt->fetchColumn();
+    }
+
     public static function all(array $filters = [], int $limit = 12, int $offset = 0): array
     {
         [$where, $params, $order] = self::filterSql($filters);

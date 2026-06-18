@@ -25,3 +25,4 @@
   <button>Filter</button>
 </form>
 <?php require __DIR__ . '/_cards.php'; ?>
+<?php require __DIR__ . '/../layout/_pagination.php'; ?>
