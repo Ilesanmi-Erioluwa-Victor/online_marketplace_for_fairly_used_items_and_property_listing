@@ -1,5 +1,13 @@
 <?php
 
+if (php_sapi_name() === 'cli-server') {
+    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $publicPath = __DIR__ . $path;
+    if (is_file($publicPath)) {
+        return false;
+    }
+}
+
 use App\Controllers\AdminController;
 use App\Controllers\AuthController;
 use App\Controllers\HomeController;
