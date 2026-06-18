@@ -2,4 +2,5 @@
 /vendor/
 /public/uploads/*
 !/public/uploads/.gitkeep
+.vscode/
 .DS_Store

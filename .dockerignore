@@ -1,0 +1,8 @@
+.git
+.env
+.vscode
+vendor
+public/uploads/*
+!public/uploads/.gitkeep
+*.log
+.DS_Store

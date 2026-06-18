@@ -20,14 +20,37 @@ Run `database/schema.sql`, then `database/seed.sql`.
 6. Create Paystack TEST API keys and set only `sk_test_...` and `pk_test_...` values. Live keys must not be used.
 7. Start locally with `php -S 0.0.0.0:8000 -t public public/index.php`.
 
-## Render Deployment
+## Local Docker
 
-This repo includes `render.yaml`.
+If Docker is installed locally:
 
-- Build command: `composer install --no-dev --optimize-autoloader`
-- Start command: `php -S 0.0.0.0:$PORT -t public public/index.php`
+```bash
+docker build -t fairly-marketplace .
+docker run --env-file .env -p 8000:8000 fairly-marketplace
+```
+
+Then open `http://localhost:8000`.
+
+## Render Deployment With Docker
+
+This repo includes `Dockerfile` and `render.yaml` configured for Render Docker deploys.
+
+1. Push this repository to GitHub.
+2. In Render, create a new Web Service.
+3. Select the GitHub repo.
+4. Choose `Docker` as the runtime/environment.
+5. Confirm the Dockerfile path is `./Dockerfile`.
+6. Set all variables from `.env.example` in Render dashboard.
+7. Set `APP_ENV=production`.
+8. Set `APP_URL` to the final Render service URL, for example `https://fairly-marketplace.onrender.com`.
+9. Deploy.
+
+The Docker image installs PHP 8.3, Composer dependencies, and the `pdo_pgsql` extension required for Supabase Postgres.
+
+For non-Docker PHP hosting, the equivalent start command is `php -S 0.0.0.0:$PORT -t public public/index.php`.
+
 - Set all variables from `.env.example` in Render dashboard.
-- Set `APP_ENV=production` and `APP_URL` to the Render service URL.
+- Never set Paystack live keys. Use only `sk_test_...` and `pk_test_...`.
 
 ## Architecture
 
