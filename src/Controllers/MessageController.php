@@ -25,6 +25,7 @@ class MessageController extends BaseController
         $user = Auth::requireAuth();
         $conversation = Conversation::findForUser((int) $id, (int) $user['id']);
         if (!$conversation) { http_response_code(404); require __DIR__ . '/../../views/errors/404.php'; return; }
+        Message::markConversationAsRead((int) $id, (int) $user['id']);
         $this->render('messages/thread', ['conversation' => $conversation, 'messages' => Message::forConversation((int) $id)]);
     }
 

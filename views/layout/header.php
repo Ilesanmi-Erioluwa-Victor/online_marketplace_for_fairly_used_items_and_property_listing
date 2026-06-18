@@ -1,8 +1,10 @@
 <?php
 use App\Core\Auth;
 use App\Core\Csrf;
+use App\Models\Message;
 
 $currentUser = Auth::currentUser();
+$unreadCount = $currentUser ? Message::unreadCount((int) $currentUser['id']) : 0;
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 if (!class_exists('Csrf')) { class_alias(Csrf::class, 'Csrf'); }

@@ -24,4 +24,19 @@ class Message
         $stmt->execute([$conversationId]);
         return $stmt->fetchAll();
     }
+
+    public static function unreadCount(int $userId): int
+    {
+        $stmt = Database::getConnection()->prepare("SELECT COUNT(*) FROM messages m
+            JOIN conversations c ON c.id=m.conversation_id
+            WHERE (c.buyer_id=? OR c.seller_id=?) AND m.sender_id!=? AND m.read_at IS NULL");
+        $stmt->execute([$userId, $userId, $userId]);
+        return (int) $stmt->fetchColumn();
+    }
+
+    public static function markConversationAsRead(int $conversationId, int $userId): void
+    {
+        $stmt = Database::getConnection()->prepare("UPDATE messages SET read_at=NOW() WHERE conversation_id=? AND sender_id!=? AND read_at IS NULL");
+        $stmt->execute([$conversationId, $userId]);
+    }
 }

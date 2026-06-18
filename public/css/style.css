@@ -108,6 +108,22 @@ img { max-width: 100%; display: block; }
   transition: all var(--transition);
 }
 .nav-logout:hover { background: #FEE2E2; color: var(--danger); }
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  background: var(--danger);
+  border-radius: 9px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
 
 /* Hamburger */
 .hamburger {
