@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: fairly-marketplace
+    env: php
+    plan: free
+    buildCommand: composer install --no-dev --optimize-autoloader
+    startCommand: php -S 0.0.0.0:$PORT -t public public/index.php
+    envVars:
+      - key: APP_ENV
+        value: production
