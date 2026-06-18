@@ -30,8 +30,12 @@ class AdminController extends BaseController
     {
         Auth::requireAdmin();
         $db = Database::getConnection();
-        $items = $db->query("SELECT *, 'item' AS listing_table FROM item_listings WHERE status='pending' ORDER BY created_at DESC")->fetchAll();
-        $properties = $db->query("SELECT *, 'property' AS listing_table FROM property_listings WHERE status='pending' ORDER BY created_at DESC")->fetchAll();
+        $items = $db->query("SELECT i.*, u.full_name AS user_name, 'item' AS listing_table,
+            (SELECT image_url FROM listing_images WHERE listing_table='item' AND listing_id=i.id LIMIT 1) image_url
+            FROM item_listings i JOIN users u ON u.id=i.user_id WHERE i.status='pending' ORDER BY i.created_at DESC")->fetchAll();
+        $properties = $db->query("SELECT p.*, u.full_name AS user_name, 'property' AS listing_table,
+            (SELECT image_url FROM listing_images WHERE listing_table='property' AND listing_id=p.id LIMIT 1) image_url
+            FROM property_listings p JOIN users u ON u.id=p.user_id WHERE p.status='pending' ORDER BY p.created_at DESC")->fetchAll();
         $this->render('admin/listings-pending', compact('items', 'properties'));
     }
 

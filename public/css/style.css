@@ -678,6 +678,37 @@ tr:hover td { background: var(--primary-lighter); }
 .preview { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 .preview img { width: 80px; height: 60px; object-fit: cover; border-radius: var(--radius-xs); border: 1px solid var(--border); }
 
+/* ─── Admin Listing Cards ─── */
+.listing-cards { display: flex; flex-direction: column; gap: 16px; }
+.listing-card {
+  display: flex;
+  gap: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  transition: box-shadow var(--transition);
+}
+.listing-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.listing-card-img { flex-shrink: 0; width: 140px; height: 100px; }
+.listing-card-img img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-xs); }
+.listing-card-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.listing-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.listing-card-title { font-weight: 600; font-size: 15px; color: var(--text); text-decoration: none; }
+.listing-card-title:hover { color: var(--primary); }
+.listing-card-price { font-weight: 700; font-size: 15px; color: var(--primary); white-space: nowrap; }
+.listing-card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin: 0; }
+.listing-card-meta { display: flex; gap: 16px; font-size: 12px; color: var(--text-muted); flex-wrap: wrap; }
+.listing-card-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.reject-form { display: inline-flex; gap: 6px; align-items: center; }
+.reject-input { width: auto; min-width: 140px; padding: 7px 10px; font-size: 13px; }
+@media (max-width: 600px) {
+  .listing-card { flex-direction: column; }
+  .listing-card-img { width: 100%; height: 160px; }
+  .listing-card-header { flex-direction: column; }
+  .reject-form { flex-wrap: wrap; }
+}
+
 /* ─── Split Layout ─── */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 
