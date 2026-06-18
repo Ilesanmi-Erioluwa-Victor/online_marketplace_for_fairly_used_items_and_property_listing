@@ -1,5 +1,5 @@
 <?php $amenities = is_array($property['amenities'] ?? null) ? $property['amenities'] : json_decode($property['amenities'] ?? '[]', true); ?>
-<form method="post" enctype="multipart/form-data" class="form-card wide" data-validate>
+<form method="post" enctype="multipart/form-data" class="form-card wide" data-validate action="<?= !empty($property['id']) ? '' : '/properties' ?>">
   <?= Csrf::field() ?>
   <h1 style="margin:0 0 4px"><?= !empty($property['id']) ? 'Edit Property' : 'Post Property' ?></h1>
   <p class="subtitle"><?= !empty($property['id']) ? 'Update your listing details.' : 'List your property for rent or sale.' ?></p>

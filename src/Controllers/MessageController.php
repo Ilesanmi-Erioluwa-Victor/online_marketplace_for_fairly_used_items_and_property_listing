@@ -32,6 +32,7 @@ class MessageController extends BaseController
     {
         Csrf::verify();
         $user = Auth::requireAuth();
+        if (!$user['is_verified']) { $_SESSION['flash'] = 'Verify your email to send messages.'; $this->redirect('/'); }
         $table = $_POST['listing_table'] === 'property' ? 'property' : 'item';
         $listing = $table === 'property' ? PropertyListing::find((int) $_POST['listing_id']) : ItemListing::find((int) $_POST['listing_id']);
         if (!$listing || (int) $listing['user_id'] === (int) $user['id']) {
@@ -48,6 +49,7 @@ class MessageController extends BaseController
     {
         Csrf::verify();
         $user = Auth::requireAuth();
+        if (!$user['is_verified']) { $_SESSION['flash'] = 'Verify your email to send messages.'; $this->redirect('/'); }
         $conversation = Conversation::findForUser((int) $id, (int) $user['id']);
         if (!$conversation) { http_response_code(404); return; }
         $listing = $conversation['listing_table'] === 'property' ? PropertyListing::find((int) $conversation['listing_id']) : ItemListing::find((int) $conversation['listing_id']);

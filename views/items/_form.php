@@ -1,4 +1,4 @@
-<form method="post" enctype="multipart/form-data" class="form-card wide" data-validate>
+<form method="post" enctype="multipart/form-data" class="form-card wide" data-validate action="<?= !empty($item['id']) ? '' : '/items' ?>">
   <?= Csrf::field() ?>
   <h1 style="margin:0 0 4px"><?= !empty($item['id']) ? 'Edit Item' : 'Post Item' ?></h1>
   <p class="subtitle"><?= !empty($item['id']) ? 'Update your listing details.' : 'Describe your item for potential buyers.' ?></p>

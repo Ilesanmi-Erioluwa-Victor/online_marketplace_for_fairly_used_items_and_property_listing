@@ -23,7 +23,7 @@ class PropertyController extends BaseController
             'totalPages' => (int) ceil($total / $perPage),
         ]);
     }
-    public function create(): void { Auth::requireAuth(); $this->render('properties/create'); }
+    public function create(): void { $user = Auth::requireAuth(); if (!$user['is_verified']) { $_SESSION['flash'] = 'Verify your email before posting.'; $this->redirect('/'); } $this->render('properties/create'); }
 
     public function store(): void
     {

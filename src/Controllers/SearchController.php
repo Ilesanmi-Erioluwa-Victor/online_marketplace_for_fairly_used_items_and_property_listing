@@ -8,8 +8,7 @@ class SearchController extends BaseController
 {
     public function index(): void
     {
-        $this->render('home/index', [
-            'featured' => [],
+        $this->render('search/index', [
             'items' => ItemListing::all($_GET, 20, 0),
             'properties' => PropertyListing::all($_GET, 20, 0),
             'query' => $_GET['q'] ?? '',

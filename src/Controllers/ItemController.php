@@ -27,7 +27,7 @@ class ItemController extends BaseController
             'totalPages' => (int) ceil($total / $perPage),
         ]);
     }
-    public function create(): void { Auth::requireAuth(); $this->render('items/create'); }
+    public function create(): void { $user = Auth::requireAuth(); if (!$user['is_verified']) { $_SESSION['flash'] = 'Verify your email before posting.'; $this->redirect('/'); } $this->render('items/create'); }
 
     public function store(): void
     {
