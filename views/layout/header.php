@@ -6,8 +6,6 @@ $currentUser = Auth::currentUser();
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 if (!class_exists('Csrf')) { class_alias(Csrf::class, 'Csrf'); }
-if (!function_exists('h')) { function h($value): string { return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8'); } }
-if (!function_exists('money')) { function money($value): string { return '₦' . number_format((float) $value); } }
 ?>
 <!doctype html>
 <html lang="en">

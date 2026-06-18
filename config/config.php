@@ -20,6 +20,9 @@ $env = $_ENV['APP_ENV'] ?? 'local';
 ini_set('display_errors', $env === 'production' ? '0' : '1');
 error_reporting(E_ALL);
 
+if (!function_exists('h')) { function h($value): string { return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8'); } }
+if (!function_exists('money')) { function money($value): string { return '₦' . number_format((float) $value); } }
+
 return [
     'app_name' => 'Fairly Marketplace',
     'app_url' => rtrim($_ENV['APP_URL'] ?? 'http://localhost:8000', '/'),

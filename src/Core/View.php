@@ -13,9 +13,6 @@ class View
 
     public static function email(string $template, array $data = []): string
     {
-        if (!function_exists('h')) {
-            function h($value): string { return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8'); }
-        }
         extract($data);
         ob_start();
         require __DIR__ . '/../../views/emails/' . $template . '.php';

@@ -43,7 +43,7 @@ class AuthController extends BaseController
         } catch (\Throwable $e) {
             error_log('REGISTRATION ERROR: ' . $e->getMessage() . "\n" . $e->getTraceAsString());
             http_response_code(500);
-            echo 'Registration failed: ' . $e->getMessage();
+            echo 'Registration failed. Please try again.';
         }
     }
 
