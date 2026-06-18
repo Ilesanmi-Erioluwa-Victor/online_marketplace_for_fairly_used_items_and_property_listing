@@ -14,7 +14,7 @@
         <a href="/properties/create">Post Property</a>
         <a href="/messages">Messages<?php if (!empty($unreadCount)): ?><span class="nav-badge"><?= $unreadCount ?></span><?php endif; ?></a>
         <a href="/profile">My Listings</a>
-        <?php if (($currentUser['role'] ?? '') === 'admin'): ?><a href="/admin">Admin</a><?php endif; ?>
+        <?php if (($currentUser['role'] ?? '') === 'admin'): ?><a href="/admin">Admin<?php if (!empty($pendingCount)): ?><span class="nav-badge"><?= $pendingCount ?></span><?php endif; ?></a><?php endif; ?>
         <form method="post" action="/logout" class="inline-form"><?= Csrf::field() ?><button type="submit" class="nav-logout">Logout</button></form>
       <?php else: ?>
         <a href="/login">Login</a>

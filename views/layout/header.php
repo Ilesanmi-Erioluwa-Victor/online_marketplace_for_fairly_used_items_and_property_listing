@@ -1,10 +1,12 @@
 <?php
 use App\Core\Auth;
 use App\Core\Csrf;
+use App\Core\Database;
 use App\Models\Message;
 
 $currentUser = Auth::currentUser();
 $unreadCount = $currentUser ? Message::unreadCount((int) $currentUser['id']) : 0;
+$pendingCount = $currentUser && ($currentUser['role'] ?? '') === 'admin' ? (int) Database::getConnection()->query("SELECT (SELECT COUNT(*) FROM item_listings WHERE status='pending') + (SELECT COUNT(*) FROM property_listings WHERE status='pending')")->fetchColumn() : 0;
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
 if (!class_exists('Csrf')) { class_alias(Csrf::class, 'Csrf'); }
