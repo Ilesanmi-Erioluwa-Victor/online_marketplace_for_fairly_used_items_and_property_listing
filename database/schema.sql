@@ -21,11 +21,16 @@ CREATE TABLE IF NOT EXISTS item_listings (
     condition VARCHAR(20) NOT NULL CHECK (condition IN ('new','like-new','used','fair')),
     price NUMERIC(14,2) NOT NULL CHECK (price >= 0),
     quantity INTEGER NOT NULL DEFAULT 1 CHECK (quantity >= 0),
+    city VARCHAR(90),
+    state VARCHAR(90),
     status VARCHAR(20) NOT NULL DEFAULT 'pending' CHECK (status IN ('pending','active','sold','removed','rejected')),
     rejection_reason TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+ALTER TABLE item_listings ADD COLUMN IF NOT EXISTS city VARCHAR(90);
+ALTER TABLE item_listings ADD COLUMN IF NOT EXISTS state VARCHAR(90);
 
 CREATE TABLE IF NOT EXISTS property_listings (
     id BIGSERIAL PRIMARY KEY,

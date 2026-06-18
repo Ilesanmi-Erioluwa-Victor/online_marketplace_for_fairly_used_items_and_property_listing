@@ -42,7 +42,7 @@
       <div class="card-body">
         <div class="card-tags"><span class="badge"><?= h($item['condition']) ?></span></div>
         <h3><?= h($item['title']) ?></h3>
-        <p class="text-muted"><?= h($item['category']) ?></p>
+        <p class="text-muted"><?= h($item['category']) ?><?php if (!empty($item['city']) || !empty($item['state'])): ?> · 📍 <?= h($item['city'] ?? '') ?><?= (!empty($item['city']) && !empty($item['state'])) ? ', ' : '' ?><?= h($item['state'] ?? '') ?><?php endif; ?></p>
         <p class="price"><?= money($item['price']) ?></p>
       </div>
     </a>
@@ -64,7 +64,7 @@
       <div class="card-body">
         <div class="card-tags"><span class="badge"><?= h($item['condition']) ?></span></div>
         <h3><?= h($item['title']) ?></h3>
-        <p class="text-muted"><?= h($item['category']) ?></p>
+        <p class="text-muted"><?= h($item['category']) ?><?php if (!empty($item['city']) || !empty($item['state'])): ?> · 📍 <?= h($item['city'] ?? '') ?><?= (!empty($item['city']) && !empty($item['state'])) ? ', ' : '' ?><?= h($item['state'] ?? '') ?><?php endif; ?></p>
         <p class="price"><?= money($item['price']) ?></p>
       </div>
     </a>
@@ -86,7 +86,7 @@
       <div class="card-body">
         <div class="card-tags"><span class="badge"><?= h($item['condition']) ?></span></div>
         <h3><?= h($item['title']) ?></h3>
-        <p class="text-muted"><?= h($item['category']) ?></p>
+        <p class="text-muted"><?= h($item['category']) ?><?php if (!empty($item['city']) || !empty($item['state'])): ?> · 📍 <?= h($item['city'] ?? '') ?><?= (!empty($item['city']) && !empty($item['state'])) ? ', ' : '' ?><?= h($item['state'] ?? '') ?><?php endif; ?></p>
         <p class="price"><?= money($item['price']) ?></p>
       </div>
     </a>
@@ -108,7 +108,7 @@
       <div class="card-body">
         <div class="card-tags"><span class="badge"><?= h($item['condition']) ?></span></div>
         <h3><?= h($item['title']) ?></h3>
-        <p class="text-muted"><?= h($item['category']) ?></p>
+        <p class="text-muted"><?= h($item['category']) ?><?php if (!empty($item['city']) || !empty($item['state'])): ?> · 📍 <?= h($item['city'] ?? '') ?><?= (!empty($item['city']) && !empty($item['state'])) ? ', ' : '' ?><?= h($item['state'] ?? '') ?><?php endif; ?></p>
         <p class="price"><?= money($item['price']) ?></p>
       </div>
     </a>
@@ -173,7 +173,7 @@
       <div class="card-body">
         <div class="card-tags"><span class="badge"><?= h($item['category']) ?></span></div>
         <h3><?= h($item['title']) ?></h3>
-        <p class="text-muted"><?= h($item['condition']) ?></p>
+        <p class="text-muted"><?= h($item['condition']) ?><?php if (!empty($item['city']) || !empty($item['state'])): ?> · 📍 <?= h($item['city'] ?? '') ?><?= (!empty($item['city']) && !empty($item['state'])) ? ', ' : '' ?><?= h($item['state'] ?? '') ?><?php endif; ?></p>
         <p class="price"><?= money($item['price']) ?></p>
       </div>
     </a>

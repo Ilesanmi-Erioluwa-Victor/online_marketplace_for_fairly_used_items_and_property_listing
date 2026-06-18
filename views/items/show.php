@@ -11,6 +11,9 @@
       <span class="badge badge-<?= $item['status'] === 'active' ? 'success' : ($item['status'] === 'sold' ? 'danger' : 'warning') ?>"><?= h($item['status']) ?></span>
     </div>
     <div class="detail-price"><?= money($item['price']) ?></div>
+    <?php if (!empty($item['city']) || !empty($item['state'])): ?>
+    <p style="margin:12px 0;color:var(--text-muted);font-size:14px">📍 <?= h($item['city'] ?? '') ?><?= (!empty($item['city']) && !empty($item['state'])) ? ', ' : '' ?><?= h($item['state'] ?? '') ?></p>
+    <?php endif; ?>
 
     <div class="detail-section">
       <h2>Description</h2>

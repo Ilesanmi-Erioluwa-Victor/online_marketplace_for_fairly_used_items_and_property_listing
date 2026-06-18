@@ -43,15 +43,15 @@ class ItemListing
 
     public static function create(array $data): int
     {
-        $stmt = Database::getConnection()->prepare('INSERT INTO item_listings (user_id,title,description,category,condition,price,quantity,status) VALUES (?,?,?,?,?,?,?,?) RETURNING id');
-        $stmt->execute([$data['user_id'], $data['title'], $data['description'], $data['category'], $data['condition'], $data['price'], $data['quantity'], 'pending']);
+        $stmt = Database::getConnection()->prepare('INSERT INTO item_listings (user_id,title,description,category,condition,price,quantity,city,state,status) VALUES (?,?,?,?,?,?,?,?,?,?) RETURNING id');
+        $stmt->execute([$data['user_id'], $data['title'], $data['description'], $data['category'], $data['condition'], $data['price'], $data['quantity'], $data['city'] ?? null, $data['state'] ?? null, 'pending']);
         return (int) $stmt->fetchColumn();
     }
 
     public static function update(int $id, int $userId, array $data): void
     {
-        $stmt = Database::getConnection()->prepare('UPDATE item_listings SET title=?, description=?, category=?, condition=?, price=?, quantity=?, status=?, updated_at=NOW() WHERE id=? AND user_id=?');
-        $stmt->execute([$data['title'], $data['description'], $data['category'], $data['condition'], $data['price'], $data['quantity'], $data['status'], $id, $userId]);
+        $stmt = Database::getConnection()->prepare('UPDATE item_listings SET title=?, description=?, category=?, condition=?, price=?, quantity=?, city=?, state=?, status=?, updated_at=NOW() WHERE id=? AND user_id=?');
+        $stmt->execute([$data['title'], $data['description'], $data['category'], $data['condition'], $data['price'], $data['quantity'], $data['city'] ?? null, $data['state'] ?? null, $data['status'], $id, $userId]);
     }
 
     public static function delete(int $id, int $userId): void
@@ -79,16 +79,17 @@ class ItemListing
     {
         $where = '';
         $params = [];
-        foreach (['category', 'condition'] as $field) {
+        foreach (['category', 'condition', 'city', 'state'] as $field) {
             if (!empty($filters[$field])) {
-                $where .= " AND i.{$field}=?";
+                $where .= " AND i.{$field} ILIKE ?";
                 $params[] = $filters[$field];
             }
         }
         if (!empty($filters['q'])) {
-            $where .= ' AND (i.title ILIKE ? OR i.description ILIKE ?)';
-            $params[] = '%' . $filters['q'] . '%';
-            $params[] = '%' . $filters['q'] . '%';
+            $where .= ' AND (i.title ILIKE ? OR i.description ILIKE ? OR i.city ILIKE ? OR i.state ILIKE ?)';
+            for ($i = 0; $i < 4; $i++) {
+                $params[] = '%' . $filters['q'] . '%';
+            }
         }
         if ($filters['min_price'] ?? '') {
             $where .= ' AND i.price >= ?';

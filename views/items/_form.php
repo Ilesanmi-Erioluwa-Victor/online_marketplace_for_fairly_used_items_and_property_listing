@@ -30,6 +30,16 @@
   </div>
   <div class="form-row">
     <div class="form-group">
+      <label>City</label>
+      <input name="city" value="<?= h($item['city'] ?? '') ?>" placeholder="e.g. Ikeja">
+    </div>
+    <div class="form-group">
+      <label>State</label>
+      <input name="state" value="<?= h($item['state'] ?? '') ?>" placeholder="e.g. Lagos">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
       <label>Price (₦)</label>
       <input type="number" name="price" min="0" value="<?= h($item['price']) ?>" required>
     </div>

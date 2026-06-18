@@ -13,6 +13,8 @@
       <option <?= ($filters['condition'] ?? '') === $c ? 'selected' : '' ?>><?= h($c) ?></option>
     <?php endforeach; ?>
   </select>
+  <input name="city" placeholder="City" value="<?= h($filters['city'] ?? '') ?>">
+  <input name="state" placeholder="State" value="<?= h($filters['state'] ?? '') ?>">
   <input type="number" name="min_price" placeholder="Min price" value="<?= h($filters['min_price'] ?? '') ?>">
   <input type="number" name="max_price" placeholder="Max price" value="<?= h($filters['max_price'] ?? '') ?>">
   <select name="sort">
