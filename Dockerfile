@@ -16,4 +16,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "php migrate.php && php -S 0.0.0.0:${PORT:-8000} -t public public/index.php"]
+CMD ["sh", "-c", "mkdir -p storage/sessions && php migrate.php && php -S 0.0.0.0:${PORT:-8000} -t public public/index.php"]

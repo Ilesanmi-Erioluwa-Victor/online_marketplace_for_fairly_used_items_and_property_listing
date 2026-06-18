@@ -2,6 +2,8 @@
 /vendor/
 /public/uploads/*
 !/public/uploads/.gitkeep
+/storage/sessions/*
+!/storage/sessions/.gitkeep
 .vscode/
 .DS_Store
 .env.example

@@ -25,6 +25,19 @@ use App\Controllers\PropertyController;
 use App\Controllers\SearchController;
 use App\Core\Router;
 
+$sessionPath = __DIR__ . '/../storage/sessions';
+if (!is_dir($sessionPath)) {
+    @mkdir($sessionPath, 0777, true);
+}
+session_save_path($sessionPath);
+session_set_cookie_params([
+    'lifetime' => 86400 * 7,
+    'path' => '/',
+    'domain' => '',
+    'secure' => (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || ($_SERVER['REQUEST_SCHEME'] ?? '') === 'https',
+    'httponly' => true,
+    'samesite' => 'Lax',
+]);
 session_start();
 
 $config = require __DIR__ . '/../config/config.php';
