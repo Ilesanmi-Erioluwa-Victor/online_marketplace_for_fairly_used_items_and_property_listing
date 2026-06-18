@@ -1,0 +1,2 @@
+<p>Hello <?= h($name ?? '') ?>,</p>
+<p><?= h($message ?? '') ?></p>
