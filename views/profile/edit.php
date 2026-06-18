@@ -41,9 +41,13 @@
       <div class="listing-row-actions">
         <a class="btn btn-sm btn-outline" href="/items/<?= h($listing['id']) ?>/edit">Edit</a>
         <?php if ($listing['status'] === 'active'): ?>
-        <form method="post" action="/feature" class="inline-form">
-          <?= Csrf::field() ?><input type="hidden" name="listing_table" value="item"><input type="hidden" name="listing_id" value="<?= h($listing['id']) ?>"><button class="btn-sm btn-primary">Feature ₦<?= number_format($config['item_feature_fee']) ?></button>
-        </form>
+          <?php if (!empty($listing['is_featured'])): ?>
+            <span class="btn-sm btn-featured">Featured</span>
+          <?php else: ?>
+          <form method="post" action="/feature" class="inline-form">
+            <?= Csrf::field() ?><input type="hidden" name="listing_table" value="item"><input type="hidden" name="listing_id" value="<?= h($listing['id']) ?>"><button class="btn-sm btn-primary">Feature ₦<?= number_format($config['item_feature_fee']) ?></button>
+          </form>
+          <?php endif; ?>
         <?php endif; ?>
         <form method="post" action="/items/<?= h($listing['id']) ?>/delete" class="inline-form">
           <?= Csrf::field() ?><button class="btn-sm btn-danger">Remove</button>
@@ -66,9 +70,13 @@
       <div class="listing-row-actions">
         <a class="btn btn-sm btn-outline" href="/properties/<?= h($listing['id']) ?>/edit">Edit</a>
         <?php if ($listing['status'] === 'active'): ?>
-        <form method="post" action="/feature" class="inline-form">
-          <?= Csrf::field() ?><input type="hidden" name="listing_table" value="property"><input type="hidden" name="listing_id" value="<?= h($listing['id']) ?>"><button class="btn-sm btn-primary">Feature ₦<?= number_format($config['property_feature_fee']) ?></button>
-        </form>
+          <?php if (!empty($listing['is_featured'])): ?>
+            <span class="btn-sm btn-featured">Featured</span>
+          <?php else: ?>
+          <form method="post" action="/feature" class="inline-form">
+            <?= Csrf::field() ?><input type="hidden" name="listing_table" value="property"><input type="hidden" name="listing_id" value="<?= h($listing['id']) ?>"><button class="btn-sm btn-primary">Feature ₦<?= number_format($config['property_feature_fee']) ?></button>
+          </form>
+          <?php endif; ?>
         <?php endif; ?>
         <form method="post" action="/properties/<?= h($listing['id']) ?>/delete" class="inline-form">
           <?= Csrf::field() ?><button class="btn-sm btn-danger">Remove</button>

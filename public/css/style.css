@@ -335,6 +335,7 @@ button:hover, .btn:hover { background: var(--accent-dark); color: white; }
 .btn-danger:hover { background: #DC2626; }
 .btn-success { background: var(--success); }
 .btn-success:hover { background: #059669; }
+.btn-featured { background: var(--success); color: #fff; cursor: default; }
 .btn-sm { padding: 7px 14px; font-size: 13px; }
 .btn-outline {
   background: transparent;

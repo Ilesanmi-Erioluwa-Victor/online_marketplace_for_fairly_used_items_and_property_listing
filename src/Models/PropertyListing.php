@@ -68,7 +68,9 @@ class PropertyListing
 
     public static function byUser(int $userId): array
     {
-        $stmt = Database::getConnection()->prepare("SELECT *, 'property' AS listing_table FROM property_listings WHERE user_id=? ORDER BY created_at DESC");
+        $stmt = Database::getConnection()->prepare("SELECT *, 'property' AS listing_table,
+            EXISTS(SELECT 1 FROM featured_listings f WHERE f.listing_table='property' AND f.listing_id=property_listings.id AND f.featured_until>NOW()) AS is_featured
+            FROM property_listings WHERE user_id=? ORDER BY created_at DESC");
         $stmt->execute([$userId]);
         return $stmt->fetchAll();
     }
