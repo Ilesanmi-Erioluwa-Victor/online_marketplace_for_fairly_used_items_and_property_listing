@@ -10,14 +10,9 @@ try {
     $db->exec($schema);
 
     if (($_ENV['RUN_SEED'] ?? '') === 'true') {
-        $count = (int) $db->query("SELECT COUNT(*) FROM users")->fetchColumn();
-        if ($count === 0) {
-            $seed = file_get_contents(__DIR__ . '/database/seed.sql');
-            $db->exec($seed);
-            fwrite(STDOUT, "Seed data applied.\n");
-        } else {
-            fwrite(STDOUT, "Seed skipped: database already has {$count} users.\n");
-        }
+        $seed = file_get_contents(__DIR__ . '/database/seed.sql');
+        $db->exec($seed);
+        fwrite(STDOUT, "Seed applied. Admin: admin@fairlymarket.ng / admin123 | Users: password123\n");
     }
 } catch (\Throwable $e) {
     fwrite(STDERR, "Migration: " . $e->getMessage() . "\n");

@@ -1,22 +1,22 @@
 TRUNCATE featured_listings, reports, messages, conversations, listing_images, property_listings, item_listings, password_resets, email_verifications, users RESTART IDENTITY CASCADE;
 
 INSERT INTO users (id, full_name, email, phone, password_hash, role, is_verified, bio) VALUES
-(1, 'Admin User', 'admin@fairlymarket.ng', '+2348010000001', '$2y$10$hFiJubQikJmwc5GfnXAnOe.ApaiHzH.AAa7m4sCsPIHCNr3S61kAu', 'admin', true, 'Platform administrator.'),
-(2, 'Chinedu Okafor', 'chinedu@example.com', '+2348034567890', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'buyer_seller', true, 'Electronics seller in Ikeja. Fast response.'),
-(3, 'Aisha Bello', 'aisha@example.com', '+2348051112233', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'landlord_tenant', true, 'Property agent covering Lagos mainland.'),
-(4, 'Tunde Adeyemi', 'tunde@example.com', '+2348072223344', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'general', true, 'Reliable buyer and seller of quality goods.'),
-(5, 'Ifeoma Nwosu', 'ifeoma@example.com', '+2348093334455', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'buyer_seller', true, 'Furniture and home appliances dealer.'),
-(6, 'Yusuf Ibrahim', 'yusuf@example.com', '+2347014445566', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'landlord_tenant', true, 'Abuja property manager.'),
-(7, 'Blessing Eze', 'blessing@example.com', '+2348025556677', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'buyer_seller', true, 'Fashion items and books. Quick sale.'),
-(8, 'Emeka Obi', 'emeka@example.com', '+2348066667788', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'general', true, 'Vehicle and property listings.'),
-(9, 'Fatima Sani', 'fatima@example.com', '+2348087778899', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'landlord_tenant', true, 'Short-let and rental enquiries welcome.'),
-(10, 'Kelechi Uche', 'kelechi@example.com', '+2348108889900', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'buyer_seller', true, 'Appliance reseller. Affordable prices.'),
-(11, 'Ngozi Okonjo', 'ngozi@example.com', '+2348129990011', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'general', true, 'Looking for quality fairly used goods.'),
-(12, 'Babatunde Fashola', 'babatunde@example.com', '+2348141011121', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'landlord_tenant', true, 'Lagos landlord with prime properties.'),
-(13, 'Amaka Eze', 'amaka@example.com', '+2348161213141', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'buyer_seller', true, 'Student items, gadgets and furniture.'),
-(14, 'Musa Abdullahi', 'musa@example.com', '+2348181516171', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'landlord_tenant', true, 'Abuja agent. Quality apartments.'),
-(15, 'Chiamaka Nnamdi', 'chiamaka@example.com', '+2349011819202', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'general', true, 'Careful seller with fast replies.'),
-(16, 'Segun Olawale', 'segun@example.com', '+2349032122232', '$2y$10$l09IKO1UxybCr81fgqUZCe6VsTCSlJMagdxxA8Xuu8ZnV/geBquyO', 'buyer_seller', true, 'Office equipment and tech gadgets.');
+(1, 'Admin User', 'admin@fairlymarket.ng', '+2348010000001', '$2y$10$v0xpGFdb7hKyLCPJu.AsRu7uekLwBOBvtsPiHM0RUe9x4td3VowP2', 'admin', true, 'Platform administrator.'),
+(2, 'Chinedu Okafor', 'chinedu@example.com', '+2348034567890', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'buyer_seller', true, 'Electronics seller in Ikeja. Fast response.'),
+(3, 'Aisha Bello', 'aisha@example.com', '+2348051112233', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'landlord_tenant', true, 'Property agent covering Lagos mainland.'),
+(4, 'Tunde Adeyemi', 'tunde@example.com', '+2348072223344', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'general', true, 'Reliable buyer and seller of quality goods.'),
+(5, 'Ifeoma Nwosu', 'ifeoma@example.com', '+2348093334455', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'buyer_seller', true, 'Furniture and home appliances dealer.'),
+(6, 'Yusuf Ibrahim', 'yusuf@example.com', '+2347014445566', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'landlord_tenant', true, 'Abuja property manager.'),
+(7, 'Blessing Eze', 'blessing@example.com', '+2348025556677', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'buyer_seller', true, 'Fashion items and books. Quick sale.'),
+(8, 'Emeka Obi', 'emeka@example.com', '+2348066667788', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'general', true, 'Vehicle and property listings.'),
+(9, 'Fatima Sani', 'fatima@example.com', '+2348087778899', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'landlord_tenant', true, 'Short-let and rental enquiries welcome.'),
+(10, 'Kelechi Uche', 'kelechi@example.com', '+2348108889900', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'buyer_seller', true, 'Appliance reseller. Affordable prices.'),
+(11, 'Ngozi Okonjo', 'ngozi@example.com', '+2348129990011', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'general', true, 'Looking for quality fairly used goods.'),
+(12, 'Babatunde Fashola', 'babatunde@example.com', '+2348141011121', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'landlord_tenant', true, 'Lagos landlord with prime properties.'),
+(13, 'Amaka Eze', 'amaka@example.com', '+2348161213141', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'buyer_seller', true, 'Student items, gadgets and furniture.'),
+(14, 'Musa Abdullahi', 'musa@example.com', '+2348181516171', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'landlord_tenant', true, 'Abuja agent. Quality apartments.'),
+(15, 'Chiamaka Nnamdi', 'chiamaka@example.com', '+2349011819202', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'general', true, 'Careful seller with fast replies.'),
+(16, 'Segun Olawale', 'segun@example.com', '+2349032122232', '$2y$10$.oLxnEAmZPwRxo.MQdMLwO/0BLVOJigin0ZTLiP9xFLn6bWQTqce.', 'buyer_seller', true, 'Office equipment and tech gadgets.');
 
 INSERT INTO item_listings (id, user_id, title, description, category, condition, price, quantity, status) VALUES
 (1, 2, 'Samsung 55-inch 4K Smart TV', 'Excellent condition Samsung smart TV with remote, wall bracket and all cables. 4K display, built-in streaming apps.', 'Electronics', 'like-new', 185000, 1, 'active'),
