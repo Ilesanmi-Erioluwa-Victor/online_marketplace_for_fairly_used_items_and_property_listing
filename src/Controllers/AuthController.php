@@ -17,28 +17,34 @@ class AuthController extends BaseController
 
     public function register(): void
     {
-        Csrf::verify();
-        $errors = Validator::required($_POST, ['full_name', 'email', 'phone', 'password', 'role']);
-        if (!Validator::email($_POST['email'] ?? '')) {
-            $errors['email'] = 'Enter a valid email.';
+        try {
+            Csrf::verify();
+            $errors = Validator::required($_POST, ['full_name', 'email', 'phone', 'password', 'role']);
+            if (!Validator::email($_POST['email'] ?? '')) {
+                $errors['email'] = 'Enter a valid email.';
+            }
+            if (strlen($_POST['password'] ?? '') < 8) {
+                $errors['password'] = 'Password must be at least 8 characters.';
+            }
+            if ($errors || User::findByEmail($_POST['email'])) {
+                $_SESSION['flash'] = 'Registration failed. Check your details or use another email.';
+                $this->redirect('/register');
+            }
+            $id = User::create($_POST);
+            $token = bin2hex(random_bytes(32));
+            $db = Database::getConnection();
+            $stmt = $db->prepare("INSERT INTO email_verifications (user_id, token, expires_at) VALUES (?,?,NOW() + INTERVAL '24 hours')");
+            $stmt->execute([$id, $token]);
+            $link = $this->config['app_url'] . '/verify-email?token=' . urlencode($token);
+            Mailer::send($_POST['email'], $_POST['full_name'], 'Verify your Fairly Marketplace account', View::email('verification', ['name' => $_POST['full_name'], 'link' => $link]));
+            Mailer::send($_POST['email'], $_POST['full_name'], 'Welcome to Fairly Marketplace', View::email('notice', ['name' => $_POST['full_name'], 'message' => 'Your account has been created. Please verify your email before posting listings.']));
+            $_SESSION['flash'] = 'Account created. Check your email for verification.';
+            $this->redirect('/login');
+        } catch (\Throwable $e) {
+            error_log('REGISTRATION ERROR: ' . $e->getMessage() . "\n" . $e->getTraceAsString());
+            http_response_code(500);
+            echo 'Registration failed: ' . $e->getMessage();
         }
-        if (strlen($_POST['password'] ?? '') < 8) {
-            $errors['password'] = 'Password must be at least 8 characters.';
-        }
-        if ($errors || User::findByEmail($_POST['email'])) {
-            $_SESSION['flash'] = 'Registration failed. Check your details or use another email.';
-            $this->redirect('/register');
-        }
-        $id = User::create($_POST);
-        $token = bin2hex(random_bytes(32));
-        $db = Database::getConnection();
-        $stmt = $db->prepare("INSERT INTO email_verifications (user_id, token, expires_at) VALUES (?,?,NOW() + INTERVAL '24 hours')");
-        $stmt->execute([$id, $token]);
-        $link = $this->config['app_url'] . '/verify-email?token=' . urlencode($token);
-        Mailer::send($_POST['email'], $_POST['full_name'], 'Verify your Fairly Marketplace account', View::email('verification', ['name' => $_POST['full_name'], 'link' => $link]));
-        Mailer::send($_POST['email'], $_POST['full_name'], 'Welcome to Fairly Marketplace', View::email('notice', ['name' => $_POST['full_name'], 'message' => 'Your account has been created. Please verify your email before posting listings.']));
-        $_SESSION['flash'] = 'Account created. Check your email for verification.';
-        $this->redirect('/login');
     }
 
     public function login(): void

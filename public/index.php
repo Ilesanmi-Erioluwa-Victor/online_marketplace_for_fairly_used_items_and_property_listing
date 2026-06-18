@@ -1,5 +1,11 @@
 <?php
 
+set_exception_handler(function (\Throwable $e) {
+    error_log('FATAL: ' . $e->getMessage() . "\n" . $e->getTraceAsString());
+    http_response_code(500);
+    echo 'Internal Server Error';
+});
+
 if (php_sapi_name() === 'cli-server') {
     $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $publicPath = __DIR__ . $path;
