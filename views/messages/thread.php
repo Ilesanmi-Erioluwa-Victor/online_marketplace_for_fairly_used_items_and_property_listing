@@ -1,4 +1,4 @@
-<h1>Conversation</h1>
+<h1 style="margin-bottom:20px">Conversation</h1>
 <div class="thread" data-thread>
 <?php foreach ($messages as $message): ?>
   <div class="message <?= $currentUser && (int) $message['sender_id'] === (int) $currentUser['id'] ? 'mine' : '' ?>">
@@ -8,9 +8,10 @@
   </div>
 <?php endforeach; ?>
 </div>
-<form method="post" class="form compact">
+<form method="post" class="form-card" style="max-width:700px;margin-top:16px">
   <?= Csrf::field() ?>
-  <textarea name="body" required placeholder="Write a message"></textarea>
-  <button>Send</button>
+  <div class="form-group" style="margin-bottom:12px">
+    <textarea name="body" required placeholder="Write a message..." minlength="1"></textarea>
+  </div>
+  <button type="submit">Send</button>
 </form>
-<script src="/js/messages.js"></script>

@@ -1,2 +1,2 @@
 <p>Hello <?= h($name ?? '') ?>,</p>
-<p><?= h($message ?? '') ?></p>
+<p><?= nl2br(h($message ?? '')) ?></p>

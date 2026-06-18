@@ -1,2 +1,1 @@
-<h1>Post Property Listing</h1>
 <?php $property = ['title'=>'','description'=>'','listing_type'=>'rent','property_type'=>'apartment','price'=>'','rent_period'=>'yearly','bedrooms'=>0,'bathrooms'=>0,'size_sqft'=>0,'address'=>'','city'=>'','state'=>'','amenities'=>'[]','status'=>'pending']; require __DIR__ . '/_form.php'; ?>
