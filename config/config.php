@@ -12,6 +12,10 @@ if (class_exists(Dotenv::class) && file_exists($root . '/.env')) {
     Dotenv::createImmutable($root)->safeLoad();
 }
 
+foreach (getenv() as $k => $v) {
+    $_ENV[$k] ??= $v;
+}
+
 $env = $_ENV['APP_ENV'] ?? 'local';
 ini_set('display_errors', $env === 'production' ? '0' : '1');
 error_reporting(E_ALL);
