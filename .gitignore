@@ -4,3 +4,4 @@
 !/public/uploads/.gitkeep
 .vscode/
 .DS_Store
+.env.example
